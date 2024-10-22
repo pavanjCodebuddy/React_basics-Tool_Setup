@@ -20,7 +20,7 @@ const Todo: React.FC = () => {
 
   //add new todo
   const addTodo = async () => {
-    if (!newTodo) return; // Prevent submit empty todo
+    if (!newTodo) return; 
 
     try {
       const response = await fetch('/api/todos', {
@@ -28,18 +28,18 @@ const Todo: React.FC = () => {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ taskName: newTodo }), //this Send newTodo in request body
+        body: JSON.stringify({ taskName: newTodo }), 
       });
 
       if (!response.ok) {
         throw new Error('Network response was not ok');
       }
 
-      const addedTodo = await response.json(); // Get added todo from response
-      setTodos((prev) => [...prev, addedTodo]); // Update the state with new todo
-      setNewTodo(''); // Clear the input field
+      const addedTodo = await response.json(); 
+      setTodos((prev) => [...prev, addedTodo]); 
+      setNewTodo('');
     } catch (error) {
-      console.error('Error adding TODO: ', error); // Log the error for debugging
+      console.error('Error adding TODO: ', error); 
     }
   };
 
